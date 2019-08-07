@@ -6,17 +6,17 @@
  * @flow
  */
 
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 import {
 	SafeAreaView,
 	StyleSheet,
 	ScrollView,
+	FlatList,
 	View,
 	Text,
 	StatusBar,
 	Image,
-	Button,
-	Icon,
+	Linking,
 } from 'react-native';
 
 import {
@@ -27,8 +27,13 @@ import {
 	ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-
+import {Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Swiper from 'react-native-swiper'
+
+import HorizontalFlatList from './components/horizontalFlatList';
+
+
 
 const App = () => {
 	return (
@@ -44,7 +49,7 @@ const App = () => {
 						</View>
 					)}
 					<View style={styles.body}>
-					<View style={styles.sectionContainer}>
+						<View style={styles.sectionContainer}>
 							<Text style={styles.sectionTitle}>Section One Title</Text>
 							<Swiper style={styles.wrapper} showsButtons={true}>
 								<View style={styles.slide1}>
@@ -52,18 +57,18 @@ const App = () => {
 										source={require('./assets/imgs/poster_000.jpg')}
 									/>
 									<View style={styles.posterInfo}>
-										<Text style={styles.posterTitle}>Poster One Title</Text>
-										<Text style={styles.posterDescription}>Poster One Title</Text>
+										<Text style={styles.posterTitle}>Poster Zero Title</Text>
+										<Text style={styles.posterDescription}>Poster Zero Title</Text>
 										<Button style={styles.posterButton}
-											icon={
-												<Icon
-													name="heartbeat"
+											/* icon={
+												<Icon style={{marginRight: 10}}
+													name="play"
 													type='font-awesome'
-													size={15}
+													size={25}
 													color="white"
 												/>
 											}
-											iconLeft
+											iconLeft */
 											title="Launch"
 											onPress={() => console.log('hello')}
 										/>
@@ -73,39 +78,93 @@ const App = () => {
 									<Image
 										source={require('./assets/imgs/poster_001.jpg')}
 									/>
-									<Text style={styles.text}>Hello Swiper</Text>
+									<View style={styles.posterInfo}>
+										<Text style={styles.posterTitle}>Poster One Title</Text>
+										<Text style={styles.posterDescription}>Poster One Title</Text>
+										<Button style={styles.posterButton}
+											/* icon={
+												<Icon style={{marginRight: 10}}
+													name="play"
+													type='font-awesome'
+													size={25}
+													color="white"
+												/>
+											}
+											iconLeft */
+											title="Launch"
+											onPress={() => console.log('hello')}
+										/>
+									</View>
 								</View>
 								<View style={styles.slide1}>
 									<Image
 										source={require('./assets/imgs/poster_002.jpg')}
 									/>
-									<Text style={styles.text}>Hello Swiper</Text>
+									<View style={styles.posterInfo}>
+										<Text style={styles.posterTitle}>Poster Two Title</Text>
+										<Text style={styles.posterDescription}>Poster Two Title</Text>
+										<Button style={styles.posterButton}
+											/* icon={
+												<Icon style={{marginRight: 10}}
+													name="play"
+													type='font-awesome'
+													size={25}
+													color="white"
+												/>
+											}
+											iconLeft */
+											title="Launch"
+											onPress={() => console.log('hello')}
+										/>
+									</View>
 								</View>
 								<View style={styles.slide1}>
 									<Image
 										source={require('./assets/imgs/poster_003.jpg')}
 									/>
-									<Text style={styles.text}>Hello Swiper</Text>
+									<View style={styles.posterInfo}>
+										<Text style={styles.posterTitle}>Poster Three Title</Text>
+										<Text style={styles.posterDescription}>Poster Three Title</Text>
+										<Button style={styles.posterButton}
+											/* icon={
+												<Icon style={{marginRight: 10}}
+													name="play"
+													type='font-awesome'
+													size={25}
+													color="white"
+												/>
+											}
+											iconLeft */
+											title="Launch"
+											onPress={() => console.log('hello')}
+										/>
+									</View>
 								</View>
 								<View style={styles.slide1}>
 									<Image
 										source={require('./assets/imgs/poster_004.jpg')}
 									/>
-									<Text style={styles.text}>Hello Swiper</Text>
-								</View>
-								<View style={styles.slide1}>
-									<Image
-										source={require('./assets/imgs/poster_005.jpg')}
-									/>
-									<Text style={styles.text}>Hello Swiper</Text>
-								</View>
-								<View style={styles.slide1}>
-									<Image
-										source={require('./assets/imgs/poster_006.jpg')}
-									/>
-									<Text style={styles.text}>Hello Swiper</Text>
+									<View style={styles.posterInfo}>
+										<Text style={styles.posterTitle}>Poster Four Title</Text>
+										<Text style={styles.posterDescription}>Poster Four Title</Text>
+										<Button style={styles.posterButton}
+											/* icon={
+												<Icon style={{marginRight: 10}}
+													name="play"
+													type='font-awesome'
+													size={25}
+													color="white"
+												/>
+											}
+											iconLeft */
+											title="Launch"
+											onPress={() => console.log('hello')}
+										/>
+									</View>
 								</View>
 							</Swiper>
+							
+							{/* <HorizontalFlatList></HorizontalFlatList> */}
 						</View>
 
 						<View style={styles.sectionContainer}>
