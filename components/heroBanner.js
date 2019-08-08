@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import {
 	AppRegistry, FlatList, StyleSheet, Text, View,
@@ -5,18 +6,22 @@ import {
 	TouchableHighlight, TouchableOpacity
 } from 'react-native';
 
+import Swiper from 'react-native-swiper'
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { courseListings } from '../data/learningData';
+import { heroListings } from '../data/learningData';
 
 
 const styles = StyleSheet.create({
-	flatList: {
+	wrapper: {
+		backgroundColor: '#00ff00',
+	},
+	slide: {
 		flex: 1,
-		flexDirection: 'column',
-		height: 150,
-		marginTop: Platform.OS === 'ios' ? 35 : 0
+		justifyContent: 'center',
+		alignItems: 'center',
+		backgroundColor: '#9DD6EB'
 	},
 	infoWrapper: {
 		position: 'absolute',
@@ -25,6 +30,10 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'center',
 		alignItems: 'center'
+	},
+	poster: {
+		height: 'auto',
+		width: '100%'
 	},
 	title: {
 		color: '#ff9900',
@@ -50,16 +59,21 @@ const styles = StyleSheet.create({
 });
 
 
-class CourseListingItem extends Component {
+
+class HeroBannerItem extends Component {
 	render() {
 		return (
-			<View>
-				<Image source={{ uri: this.props.item.image }} />
+			<View style={styles.slide}>
+				<Image
+					style={styles.poster}
+					/* source={{uri: this.props.item.image}} */
+					source={require('../assets/imgs/poster_000.jpg')}
+				/>
 
 				<View style={styles.infoWrapper}>
 					<Text style={styles.title}>{this.props.item.title}</Text>
 					<Text style={styles.description}>{this.props.item.description}</Text>
-					<Button style={styles.launchButton}
+					<Button style={styles.btnLaunch}
 						icon={
 							<Icon style={{ marginRight: 10 }}
 								name="play"
@@ -74,32 +88,37 @@ class CourseListingItem extends Component {
 					/>
 				</View>
 			</View>
-		)
-	}
+		);
+	};
 };
 
-export default class HorizontalFlatList extends Component {
+export default class HeroBanner extends Component {
+	
 	render() {
-		return (
-			<View styles={styles.flatList}>
-				<FlatList
-					horizontal={true}
-					data={courseListings}
-					renderItem={({ item, index }) => {
-						return (
-							<CourseListingItem
-								item={item}
-								index={index}
-								parentFlatList={this}>
-
-							</CourseListingItem>
-						);
-					}}
-					keyExtractor={(item, index) => 'course_' + index}
+		const banners = heroListings.map((item, index) => {
+			return (
+				<HeroBannerItem
+					item={item}
+					index={index}
+					parentSwiper={this}
+					key={'hero_' + index}
 				>
-				</FlatList>
+				</HeroBannerItem>
+			)
+		});
+		console.log(banners);
+		return (
+			<View>
+				<Swiper
+					style={styles.wrapper}
+					showsButtons={true}
+				>
+					<View style={styles.slide}>
+						<Text style={styles.title}>Hello Swiper</Text>
+					</View>
+					{banners}
+				</Swiper>
 			</View>
 		);
 	}
-}
-
+};
